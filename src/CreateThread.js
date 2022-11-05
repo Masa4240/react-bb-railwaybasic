@@ -11,13 +11,24 @@ export const CreateThread = () => {
         body: JSON.stringify({title: NewThread})
       };
     fetch(url,requestOptions)
-    setNewThread("")
+    .then(res => {
+      if (res.ErrorCode != null){
+        console.log("Fetch error")
+        console.log(res)
+        alert("Failed")
+      }
+      else{
+
+        setNewThread("")
+        alert("Create New Thread Success")
+      }
+    })
     }
 
     return <div>
         <input type="text" value={NewThread}
         onChange={(event) => setNewThread(event.target.value)}/>
-      <p>{NewThread}</p>
+      {/* <p>{NewThread}</p> */}
       {/* <input
           type="submit"
           value="add"
